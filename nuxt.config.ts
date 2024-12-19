@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     nextAuthUrl: process.env.NEXTAUTH_URL,
   },
   auth: {
+    baseURL: process.env.NEXTAUTH_URL,
     provider: {
       type: "authjs",
     },
