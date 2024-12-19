@@ -19,6 +19,6 @@ const {
     <div>{{ data }}</div>
     <p>Sign-In Options:</p>
     <button @click="signIn('gakunin')">RDM</button>
-    <button @click="signOut()">Sign Out</button>
+    <button @click="signOut">Sign Out</button>
   </div>
 </template>

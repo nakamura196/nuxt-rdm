@@ -25,7 +25,7 @@ export default NuxtAuthHandler({
         url: "https://accounts.rdm.nii.ac.jp/oauth2/authorize",
         params: {
           client_id: useRuntimeConfig().gakuninClientId,
-          scope: useRuntimeConfig().osfScope || "osf.full_read osf.full_write",
+          scope: "osf.full_read osf.full_write",
           response_type: "code",
           redirect_uri: `${
             useRuntimeConfig().nextAuthUrl
