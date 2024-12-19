@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   modules: ["@sidebase/nuxt-auth"],
   runtimeConfig: {
     authSecret: process.env.AUTH_SECRET,
@@ -11,8 +11,5 @@ export default defineNuxtConfig({
   },
   auth: {
     baseURL: process.env.NEXTAUTH_URL,
-    provider: {
-      type: "authjs",
-    },
   },
 });
