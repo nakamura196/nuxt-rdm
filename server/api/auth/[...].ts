@@ -95,6 +95,60 @@ export default NuxtAuthHandler({
         };
       },
     },
+    {
+      id: "drupal",
+      name: "Drupal",
+      type: "oauth",
+      clientId: useRuntimeConfig().drupalClientId,
+      clientSecret: useRuntimeConfig().drupalClientSecret,
+      authorization: {
+        url: process.env.DRUPAL_AUTH_URL,
+        params: {
+          scope: process.env.DRUPAL_SCOPE,
+          response_type: "code",
+          redirect_uri: `${
+            useRuntimeConfig().nextAuthUrl
+          }/api/auth/callback/drupal`,
+        },
+      },
+      token: {
+        async request(context) {
+          const body = new URLSearchParams({
+            client_id: useRuntimeConfig().drupalClientId,
+            client_secret: useRuntimeConfig().drupalClientSecret,
+            code: context.params.code || "",
+            grant_type: "authorization_code",
+            redirect_uri: `${
+              useRuntimeConfig().nextAuthUrl
+            }/api/auth/callback/drupal`,
+          });
+
+          const res = await fetch(process.env.DRUPAL_TOKEN_URL || "", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body,
+          });
+
+          const json = await res.json(); // Parse the response body once
+
+          if (!res.ok) {
+            throw new Error(`Token request failed: ${res.statusText}`);
+          }
+
+          return { tokens: json };
+        },
+      },
+      profile(profile) {
+        return {
+          id: profile.sub, // "sub" をユーザーの一意のIDとして利用
+          name: profile.name || profile.preferred_username || "Unknown User", // 名前の優先順位を設定
+          email: profile.email || "No Email Provided", // メールがない場合のフォールバック
+          image: profile.profile || null, // プロファイルURLを画像として使用（必要に応じて調整）
+        };
+      },
+    },
   ],
   callbacks: {
     async session({ session, token }) {

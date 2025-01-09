@@ -16,6 +16,7 @@ const { status, data, signIn, signOut } = useAuth();
     <p class="options-title">Sign-In Options:</p>
     <div class="button-container">
       <button @click="signIn('gakunin')" class="btn sign-in">RDM</button>
+      <button @click="signIn('drupal')" class="btn sign-in">Drupal</button>
       <button @click="signOut" class="btn sign-out">Sign Out</button>
     </div>
   </div>

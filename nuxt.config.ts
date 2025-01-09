@@ -8,6 +8,11 @@ export default defineNuxtConfig({
     gakuninClientId: process.env.GAKUNIN_CLIENT_ID,
     gakuninClientSecret: process.env.GAKUNIN_CLIENT_SECRET,
     nextAuthUrl: process.env.NEXTAUTH_URL,
+    drupalClientId: process.env.DRUPAL_CLIENT_ID,
+    drupalClientSecret: process.env.DRUPAL_CLIENT_SECRET,
+    drupalAuthUrl: process.env.DRUPAL_AUTH_URL,
+    drupalScope: process.env.DRUPAL_SCOPE,
+    drupalTokenUrl: process.env.DRUPAL_TOKEN_URL,
   },
   auth: {
     baseURL: process.env.NEXTAUTH_URL,
