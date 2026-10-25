@@ -10,12 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "next-auth": "^4.21.1",
+    "next-auth": "^4.24.15",
     "nuxt": "^3.21.10",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.9.4"
+  },
+  "overrides": {
+    "@sidebase/nuxt-auth": {
+      "next-auth": "$next-auth"
+    }
   }
 }
